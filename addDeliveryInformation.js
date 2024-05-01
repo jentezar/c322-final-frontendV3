@@ -64,7 +64,7 @@ function continueButton() {
         };
 
         localStorage.setItem("info", JSON.stringify(info));
-    window.location.href = "placeorder.html"
+    window.location.href = "PlaceOrder.html"
     }
 
     function toggleLoginLinks() {
