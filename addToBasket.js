@@ -62,5 +62,5 @@ const host = "http://localhost:8080";
 
         localStorage.setItem("cartItem", JSON.stringify(cartItem));
         
-        window.location.href = "addDeliveryInformation.html";
+        window.location.href = "AddDeliveryInformation.html";
     }
