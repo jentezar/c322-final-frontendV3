@@ -65,6 +65,7 @@ function continueButton() {
 
         localStorage.setItem("info", JSON.stringify(info));
     window.location.href = "PlaceOrder.html"
+    
     }
 
     function toggleLoginLinks() {
