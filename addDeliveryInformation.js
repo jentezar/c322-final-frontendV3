@@ -1,77 +1,70 @@
+const serverHost = "http://localhost:8080";
+window.onload = function() {
+    displayFlowerInfo();
+    displayDeliveryDetails();
+    displayLoginButtons();
+};
 
-  const host = "http://localhost:8080";
-  window.onload = function() {
-            displayDeliveryInfo();
-            displayFlowerDetails();
-            toggleLoginLinks();
-        };
+function displayFlowerInfo() {
+    const flowerTitle = localStorage.getItem("flowerTitle");
+    const flowerImageUrl = localStorage.getItem("flowerImageUrl");
 
-
-    function displayFlowerDetails() {
-      const flowerName = localStorage.getItem("flowerName");
-      const flowerImage = localStorage.getItem("flowerImage");
-
-      if (flowerName && flowerImage) {
+    if (flowerTitle && flowerImageUrl) {
         const flowerDetailsContainer = document.getElementById('flowerDetails');
         flowerDetailsContainer.innerHTML = `
-        <h2>${flowerName}</h2>
-        <img src="${flowerImage}" alt="${flowerName}" style="max-width: 25%; height: 5;">
-            `;
-        } else {
-            console.error("Flower name or image not found in local storage.");
-        }
+            <h2>${flowerTitle}</h2>
+            <img src="${flowerImageUrl}" alt="${flowerTitle}" style="max-width: 25%; height: 5;">
+        `;
+    } else {
+        console.error("Flower title or image URL not found in local storage.");
     }
+}
 
+function displayDeliveryDetails() {
+    const totalPrice = localStorage.getItem("totalPrice");
+    const deliveryTime = localStorage.getItem("deliveryTime");
 
-    function displayDeliveryInfo() {
-        const purchasePrice = localStorage.getItem("purchasePrice");
-        const deliveryDate = localStorage.getItem("deliveryDate");
-
-        if (purchasePrice && deliveryDate) {
-            document.getElementById("purchasePrice").textContent = purchasePrice;
-            document.getElementById("deliveryDate").textContent = deliveryDate;
-        } else {
-            console.error("Purchase option or delivery date not found in local storage.");
-        }
+    if (totalPrice && deliveryTime) {
+        document.getElementById("totalPrice").textContent = totalPrice;
+        document.getElementById("deliveryTime").textContent = deliveryTime;
+    } else {
+        console.error("Total price or delivery time not found in local storage.");
     }
+}
 
 function continueButton() {
-        let firstName = document.getElementById("firstName").value;
-        let lastName = document.getElementById("lastName").value;
-        let relationship = document.getElementById("relationship").value;
-        let address = document.getElementById("address").value;
-        let apt = document.getElementById("apt").value;
-        let city = document.getElementById("city").value;
-        let state = document.getElementById("state").value;
-        let zip = document.getElementById("zip").value;
+    let recipientFirstName = document.getElementById("recipientFirstName").value;
+    let recipientLastName = document.getElementById("recipientLastName").value;
+    let relationship = document.getElementById("relationship").value;
+    let recipientAddress = document.getElementById("recipientAddress").value;
+    let recipientApt = document.getElementById("recipientApt").value;
+    let recipientCity = document.getElementById("recipientCity").value;
+    let recipientState = document.getElementById("recipientState").value;
+    let recipientZip = document.getElementById("recipientZip").value;
 
-        if(!firstName || !lastName 
-        || !relationship || !address || 
-        !city || !state || !zip){
-          alert("Fill in required fields (*)");
-          return;
-        }
-
-        let info = {
-            firstName: firstName,
-            lastName: lastName,
-            relationship: relationship,
-            address: address,
-            apt: apt,
-            city: city,
-            state: state,
-            zip: zip
-        };
-
-        localStorage.setItem("info", JSON.stringify(info));
-    window.location.href = "PlaceOrder.html"
-    
+    if (!recipientFirstName || !recipientLastName || !relationship || !recipientAddress || !recipientCity || !recipientState || !recipientZip) {
+        alert("Please fill in all required fields.");
+        return;
     }
 
-    function toggleLoginLinks() {
-        const loginLinksContainer = document.getElementById('loginLinks');
-        if (isLoggedIn()) {
-            loginLinksContainer.style.display = 'none';
-        }
+    let recipientInfo = {
+        firstName: recipientFirstName,
+        lastName: recipientLastName,
+        relationship: relationship,
+        address: recipientAddress,
+        apt: recipientApt,
+        city: recipientCity,
+        state: recipientState,
+        zip: recipientZip
+    };
+
+    localStorage.setItem("recipientInfo", JSON.stringify(recipientInfo));
+    window.location.href = "PlaceOrder.html";
+}
+
+function displayLoginButtons() {
+    const loginButtonContainer = document.getElementById('loginButtons');
+    if (!isLoggedIn()) {
+        loginButtonContainer.style.display = 'block';
     }
-    
+}
