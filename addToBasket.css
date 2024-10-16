@@ -2,38 +2,47 @@
     background-color: #dcafe0;
     display: flex;
     align-items: center;
+    width: 100%;
+    padding: 20px; /* Add padding for breathing space */
 }
 
 .text {
-    flex: 1; 
-    margin-right: 20px; 
+    flex: 1;
+    margin-right: 20px;
 }
 
-
 .introduction img {
-    max-width: 1000px; 
-    width: 100%; 
-    height: auto; 
-    max-height: 200px; 
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    max-height: 200px;
 }
 
 .container {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column; /* Stack vertically to fill width */
+    align-items: center;
+    width: 100%;
 }
+
 .flower-details {
     flex: 1;
     padding-right: 5px;
+    width: 100%;
+}
+
+.delivery {
+    width: 100%; /* Ensure delivery section spans full width */
 }
 
 @media screen and (max-width: 500px) {
     .introduction {
-        flex-direction: column; 
-        text-align: center; 
+        flex-direction: column;
+        text-align: center;
     }
 
     .text {
         margin-right: 0;
-        margin-bottom: 20px; 
+        margin-bottom: 20px;
     }
 }
